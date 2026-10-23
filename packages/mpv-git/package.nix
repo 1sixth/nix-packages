@@ -2,9 +2,20 @@
   fetchFromGitHub,
   mpv,
   nix-update-script,
+  extraMakeWrapperArgs ? [ ],
+  youtubeSupport ? true,
+  scripts ? [ ],
+  extraUmpvWrapperArgs ? [ ],
 }:
 
 mpv.override {
+  inherit
+    extraMakeWrapperArgs
+    youtubeSupport
+    scripts
+    extraUmpvWrapperArgs
+    ;
+
   mpv-unwrapped = mpv.unwrapped.overrideAttrs (oldAttrs: {
     version = "0.41.0-unstable-2026-10-22";
 
