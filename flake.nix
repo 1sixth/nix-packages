@@ -26,8 +26,6 @@
 
       formatter = eachSystem (system: nixpkgs.legacyPackages.${system}.nixfmt-tree);
 
-      packages = eachSystem (system: loadPackages nixpkgs.legacyPackages.${system}.callPackage);
-
       overlays.default =
         final: prev:
         loadPackages (
@@ -39,5 +37,7 @@
           in
           lib.callPackageWith scope path args
         );
+
+      packages = eachSystem (system: loadPackages nixpkgs.legacyPackages.${system}.callPackage);
     };
 }
