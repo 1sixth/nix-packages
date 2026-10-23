@@ -35,10 +35,10 @@ stdenvNoCC.mkDerivation (
 
     source =
       sources.${stdenvNoCC.hostPlatform.system}
-        or (throw "codex-bin: unsupported system ${stdenvNoCC.hostPlatform.system}");
+        or (throw "codex: unsupported system ${stdenvNoCC.hostPlatform.system}");
   in
   {
-    pname = "codex-bin";
+    pname = "codex";
     version = "0.164.0";
 
     __structuredAttrs = true;

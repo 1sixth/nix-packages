@@ -28,6 +28,16 @@
 
       packages = eachSystem (system: loadPackages nixpkgs.legacyPackages.${system}.callPackage);
 
-      overlays.default = final: prev: loadPackages final.callPackage;
+      overlays.default =
+        final: prev:
+        loadPackages (
+          path: args:
+          let
+            name = baseNameOf (dirOf path);
+            # Use the original package for self-overrides and final for other dependencies.
+            scope = final // lib.optionalAttrs (builtins.hasAttr name prev) { ${name} = prev.${name}; };
+          in
+          lib.callPackageWith scope path args
+        );
     };
 }
