@@ -1,0 +1,52 @@
+diff --git a/Telegram/SourceFiles/api/api_peer_search.cpp b/Telegram/SourceFiles/api/api_peer_search.cpp
+index 73a252ab12..04d686c4db 100644
+--- a/Telegram/SourceFiles/api/api_peer_search.cpp
++++ b/Telegram/SourceFiles/api/api_peer_search.cpp
+@@ -53,10 +53,9 @@ void PeerSearch::request(
+ 	}
+ 	cache.requested = true;
+ 	cache.result.query = _query;
+-	if (_query.size() < kMinSponsoredQueryLength) {
++	if (_query.size() < kMinSponsoredQueryLength
++		|| _type == Type::WithSponsored) {
+ 		cache.sponsoredReady = true;
+-	} else if (_type == Type::WithSponsored) {
+-		requestSponsored();
+ 	}
+ 	requestPeers();
+ }
+diff --git a/Telegram/SourceFiles/data/components/promo_suggestions.cpp b/Telegram/SourceFiles/data/components/promo_suggestions.cpp
+index 9b91f8dbf3..8fd361ecdd 100644
+--- a/Telegram/SourceFiles/data/components/promo_suggestions.cpp
++++ b/Telegram/SourceFiles/data/components/promo_suggestions.cpp
+@@ -194,6 +194,7 @@ void PromoSuggestions::setTopPromoted(
+ 		History *promoted,
+ 		const QString &type,
+ 		const QString &message) {
++	promoted = nullptr;
+ 	const auto changed = (_topPromoted != promoted);
+ 	if (!changed
+ 		&& (!promoted || promoted->topPromotionMessage() == message)) {
+diff --git a/Telegram/SourceFiles/data/components/sponsored_messages.cpp b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
+index 04b421ef67..6c7588298d 100644
+--- a/Telegram/SourceFiles/data/components/sponsored_messages.cpp
++++ b/Telegram/SourceFiles/data/components/sponsored_messages.cpp
+@@ -302,17 +302,11 @@ HistoryItem *SponsoredMessages::injectItem(
+ }
+ 
+ bool SponsoredMessages::canHaveFor(not_null<History*> history) const {
+-	if (history->peer->isChannel()) {
+-		return true;
+-	} else if (const auto user = history->peer->asUser()) {
+-		return user->isBot();
+-	}
+ 	return false;
+ }
+ 
+ bool SponsoredMessages::canHaveFor(not_null<HistoryItem*> item) const {
+-	return item->history()->peer->isBroadcast()
+-		&& item->isRegular();
++	return false;
+ }
+ 
+ bool SponsoredMessages::isTopBarFor(not_null<History*> history) const {
