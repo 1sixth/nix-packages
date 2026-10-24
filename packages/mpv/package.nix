@@ -17,13 +17,13 @@ mpv.override {
     ;
 
   mpv-unwrapped = mpv.unwrapped.overrideAttrs (oldAttrs: {
-    version = "0.41.0-unstable-2026-10-22";
+    version = "0.41.0-unstable-2026-10-23";
 
     src = fetchFromGitHub {
       owner = "mpv-player";
       repo = "mpv";
-      rev = "fa0534a729dd3dff33ea03cc7c226d317a4fcd07";
-      hash = "sha256-CIuS6ovUwI2KXyGDcIE3Tu+tcEnJclvNgK5Fix/Oc18=";
+      rev = "1140d3cc2974d60b3f8f14fa366ce6dde759f12c";
+      hash = "sha256-mB2Qu9EZq2CcMyKOplIV7HZzYgrQMIoT/Ei3KD/o5Uc=";
     };
 
     postPatch = ''
