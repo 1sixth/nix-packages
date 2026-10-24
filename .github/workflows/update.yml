@@ -24,6 +24,10 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
+      # https://github.com/gepbird/nix-update-action/issues/2
+      - name: Archive nixpkgs
+        run: nix flake archive --json nixpkgs > /dev/null
+
       - name: Update packages
         uses: gepbird/nix-update-action@8e91c9bd11e4269d1df1c49cc2ff35471334e346 # v3.1.2
         with:
