@@ -1,4 +1,6 @@
 {
+  lib,
+  curl,
   fetchFromGitHub,
   mpv,
   nix-update-script,
@@ -25,6 +27,9 @@ mpv.override {
       rev = "baa3e11d42cb7978da634a8a6a3a55fe074d01be";
       hash = "sha256-N+xIWO9cqhZqnaqdeFaJgziVhjNKmQvfv8jkauGzF3Q=";
     };
+
+    buildInputs = oldAttrs.buildInputs ++ [ curl ];
+    mesonFlags = oldAttrs.mesonFlags ++ [ (lib.mesonEnable "libcurl" true) ];
 
     postPatch = ''
       echo "$version" > MPV_VERSION
