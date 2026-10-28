@@ -33,6 +33,6 @@ jobs:
         with:
           token: ${{ secrets.NIX_UPDATE_PAT }}
           # Temporarily pause mpv updates until nixpkgs provides libplacebo >= 7.387.0.
-          packages: codex
+          packages: codex,mcp-victorialogs,mcp-victoriametrics,mcp-victoriatraces
           pr-body: |
             Automated changes by the [nix-update-actions](https://github.com/gepbird/nix-update-action) GitHub Action.
