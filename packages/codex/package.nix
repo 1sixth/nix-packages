@@ -90,8 +90,6 @@ stdenvNoCC.mkDerivation (
       updateScript = nix-update-script {
         extraArgs = [
           "--flake"
-          "--use-github-releases"
-          "--github-releases-limit=100"
           "--version-regex"
           "^rust-v(.*)$"
           "--no-src"
