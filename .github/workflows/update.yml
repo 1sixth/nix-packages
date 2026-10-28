@@ -32,6 +32,7 @@ jobs:
         uses: gepbird/nix-update-action@8e91c9bd11e4269d1df1c49cc2ff35471334e346 # v3.1.2
         with:
           token: ${{ secrets.NIX_UPDATE_PAT }}
-          packages: codex,mpv.unwrapped
+          # Temporarily pause mpv updates until nixpkgs provides libplacebo >= 7.387.0.
+          packages: codex
           pr-body: |
             Automated changes by the [nix-update-actions](https://github.com/gepbird/nix-update-action) GitHub Action.
