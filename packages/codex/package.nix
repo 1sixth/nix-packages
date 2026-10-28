@@ -17,11 +17,11 @@ stdenvNoCC.mkDerivation (
     releases = {
       x86_64-linux = {
         target = "x86_64-unknown-linux-musl";
-        hash = "sha256-eAGuRzFjleOmOPthlkqfKPhKZkfBse2QMy5Na22gRtg=";
+        hash = "sha256-/wXBX9Y6BzSwtCMbxN3fDFmvBtynnApefFX5do2xqSw=";
       };
       aarch64-linux = {
         target = "aarch64-unknown-linux-musl";
-        hash = "sha256-gitJsLpUfy/yG+kc6/UqNf+h8PXEGMFCFKopGfiFOnY=";
+        hash = "sha256-bumteqAd73DqrTmtgZPj0abIJ4qf6ZYLT8Mq7YiB+SQ=";
       };
     };
 
@@ -39,7 +39,7 @@ stdenvNoCC.mkDerivation (
   in
   {
     pname = "codex";
-    version = "0.164.0";
+    version = "0.165.0";
 
     __structuredAttrs = true;
 
