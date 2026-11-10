@@ -8,7 +8,6 @@
   nix-update-script,
   ps,
   versionCheckHook,
-  zstd,
 }:
 
 stdenvNoCC.mkDerivation (
@@ -17,18 +16,20 @@ stdenvNoCC.mkDerivation (
     releases = {
       x86_64-linux = {
         target = "x86_64-unknown-linux-musl";
-        hash = "sha256-n2e4hoixQ1kH4hSIWI/yAR/f8n5YLS05XohVv1Z6jP8=";
+        npmPlatform = "linux-x64";
+        hash = "sha256-Lcmqhxq7UTw1OdINAl9wH68ZdMRu6Qa9o6Hh9QJtRDQ=";
       };
       aarch64-linux = {
         target = "aarch64-unknown-linux-musl";
-        hash = "sha256-f/E5iCcZ9UEuhSkdkSyZU7WWyGDRpBwGg1LaiOb8mLE=";
+        npmPlatform = "linux-arm64";
+        hash = "sha256-4k17bwr1aVo2wEaSw6eWcr2t68rHxEAFJZyzytNqxA4=";
       };
     };
 
     sources = lib.mapAttrs (
       _: release:
       fetchurl {
-        url = "https://github.com/openai/codex/releases/download/rust-v${finalAttrs.version}/codex-package-${release.target}.tar.zst";
+        url = "https://registry.npmjs.org/@openai/codex/-/codex-${finalAttrs.version}-${release.npmPlatform}.tgz";
         inherit (release) hash;
       }
     ) releases;
@@ -45,12 +46,11 @@ stdenvNoCC.mkDerivation (
 
     src = source;
 
-    sourceRoot = ".";
+    sourceRoot = "package/vendor/${releases.${stdenvNoCC.hostPlatform.system}.target}";
 
     nativeBuildInputs = [
       installShellFiles
       makeBinaryWrapper
-      zstd
     ];
 
     strictDeps = true;
@@ -90,8 +90,6 @@ stdenvNoCC.mkDerivation (
       updateScript = nix-update-script {
         extraArgs = [
           "--flake"
-          "--version-regex"
-          "^rust-v(.*)$"
           "--no-src"
           "--custom-dep=source_x86_64_linux"
           "--custom-dep=source_aarch64_linux"
