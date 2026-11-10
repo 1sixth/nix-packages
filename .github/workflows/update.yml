@@ -32,6 +32,6 @@ jobs:
         uses: gepbird/nix-update-action@8e91c9bd11e4269d1df1c49cc2ff35471334e346 # v3.1.2
         with:
           token: ${{ secrets.NIX_UPDATE_PAT }}
-          packages: codex,mcp-victorialogs,mcp-victoriametrics,mcp-victoriatraces
+          blacklist: telegram-desktop
           pr-body: |
             Automated changes by the [nix-update-actions](https://github.com/gepbird/nix-update-action) GitHub Action.
