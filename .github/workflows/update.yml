@@ -24,12 +24,11 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      # https://github.com/gepbird/nix-update-action/issues/2
-      - name: Archive nixpkgs
-        run: nix flake archive --json nixpkgs > /dev/null
+      - name: Use patched nix-update from this repository
+        run: nix registry add nixpkgs "git+file:$PWD"
 
       - name: Update packages
-        uses: gepbird/nix-update-action@8e91c9bd11e4269d1df1c49cc2ff35471334e346 # v3.1.2
+        uses: gepbird/nix-update-action@ef2bd6bf79cd36d23bf03267e210c9e5c2f5626f # v3.1.3
         with:
           token: ${{ secrets.NIX_UPDATE_PAT }}
           blacklist: telegram-desktop
