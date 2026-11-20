@@ -17,12 +17,12 @@ stdenvNoCC.mkDerivation (
       x86_64-linux = {
         target = "x86_64-unknown-linux-musl";
         npmPlatform = "linux-x64";
-        hash = "sha256-Z8S8zOjmw6K5rg5YZ1Dg76x+C4zYXmtHNK1HQxfSzDI=";
+        hash = "sha256-4T1nr7BTPMYWC19BQOStB+Ks2Hrbqggbv2m4LpDPTlU=";
       };
       aarch64-linux = {
         target = "aarch64-unknown-linux-musl";
         npmPlatform = "linux-arm64";
-        hash = "sha256-cqGwXuUi63tXqWrWDSYFbait2iDGMPVAecU92MKSYTo=";
+        hash = "sha256-Jq4neIx9lirmQyGrpGc/kYuZtAxGVSRpML+WL6W4GwE=";
       };
     };
 
@@ -40,7 +40,7 @@ stdenvNoCC.mkDerivation (
   in
   {
     pname = "codex";
-    version = "0.170.0";
+    version = "0.171.0";
 
     __structuredAttrs = true;
 
