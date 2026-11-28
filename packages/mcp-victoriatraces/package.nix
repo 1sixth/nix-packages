@@ -7,7 +7,7 @@
 
 buildGoModule (finalAttrs: {
   pname = "mcp-victoriatraces";
-  version = "1.5.0";
+  version = "1.6.0";
 
   __structuredAttrs = true;
 
@@ -15,7 +15,7 @@ buildGoModule (finalAttrs: {
     owner = "VictoriaMetrics";
     repo = "mcp-victoriatraces";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-As1ERHKytCmFRqg3ndcSQFBFg0MBs6M5zyaGUmIntuU=";
+    hash = "sha256-4a8ilOa52n7YwG+bleRsi23ycTNAS5zwU50XTjTa4B0=";
   };
 
   vendorHash = null;
