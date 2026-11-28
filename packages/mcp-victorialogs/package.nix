@@ -10,7 +10,7 @@
 
 buildGoModule (finalAttrs: {
   pname = "mcp-victorialogs";
-  version = "1.9.0";
+  version = "1.11.0";
 
   __structuredAttrs = true;
 
@@ -18,7 +18,7 @@ buildGoModule (finalAttrs: {
     owner = "VictoriaMetrics";
     repo = "mcp-victorialogs";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-esfd6Eg1j2BCgee1T5tiIdSPWVEBqhI4UGDKRFYyn3s=";
+    hash = "sha256-F61g7Br7sR8b9Bbi/ZBbBE3ZfeogXyY5lxpa/0ayHFI=";
   };
 
   vendorHash = null;
@@ -37,7 +37,7 @@ buildGoModule (finalAttrs: {
     name = "mcp-victorialogs-${finalAttrs.version}-npm-deps";
     inherit (finalAttrs) src;
     sourceRoot = "${finalAttrs.src.name}/web";
-    hash = "sha256-B8kEHH7vv1Mp1gLwsFLaFkUyNZsq2ZZHH9U6+a7JlOA=";
+    hash = "sha256-I5SdSq6O0DYuLHoREeSoA5q4GYh4iwOY9XvhQPfEDRU=";
   };
 
   npmRoot = "web";
