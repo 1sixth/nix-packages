@@ -24,8 +24,10 @@ jobs:
         with:
           nix_path: nixpkgs=channel:nixos-unstable
 
-      - name: Use patched nix-update from this repository
-        run: nix registry add nixpkgs "git+file:$PWD"
+      - name: Use nix-update from locked nixpkgs
+        run: |
+          nixpkgs_rev=$(jq -er '.nodes.nixpkgs.locked.rev' flake.lock)
+          nix registry add nixpkgs "github:NixOS/nixpkgs/$nixpkgs_rev"
 
       - name: Update packages
         uses: gepbird/nix-update-action@ef2bd6bf79cd36d23bf03267e210c9e5c2f5626f # v3.1.3
