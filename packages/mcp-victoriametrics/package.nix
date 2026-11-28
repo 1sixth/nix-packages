@@ -10,7 +10,7 @@
 
 buildGoModule (finalAttrs: {
   pname = "mcp-victoriametrics";
-  version = "1.20.2";
+  version = "1.22.0";
 
   __structuredAttrs = true;
 
@@ -18,7 +18,7 @@ buildGoModule (finalAttrs: {
     owner = "VictoriaMetrics";
     repo = "mcp-victoriametrics";
     tag = "v${finalAttrs.version}";
-    hash = "sha256-7kN7qwsvTL0scfBxMO/nrvikiysUxPY8nSFkhJsgGDM=";
+    hash = "sha256-WgeyoM9ZSgEiU+78ObCFEzDyg2jVnbqqa4SuaICK2Iw=";
   };
 
   vendorHash = null;
@@ -37,7 +37,7 @@ buildGoModule (finalAttrs: {
     name = "mcp-victoriametrics-${finalAttrs.version}-npm-deps";
     inherit (finalAttrs) src;
     sourceRoot = "${finalAttrs.src.name}/web";
-    hash = "sha256-Q6Ljqtbwz0pEvUcz8keps8Nr8xzOUusW0zBZq1mkz/Q=";
+    hash = "sha256-DToHwJw3sLgnPOcQM/nQAkz65/X6FWRRdS+hEYuTpic=";
   };
 
   npmRoot = "web";
